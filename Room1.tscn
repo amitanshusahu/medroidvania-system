@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://c30vwx61kceok"]
+
+[ext_resource type="Script" path="res://Room1.gd" id="1_getff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4ikn"]
+size = Vector2(74, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6irbp"]
+size = Vector2(78.5, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d63l"]
+size = Vector2(1191, 169)
+
+[node name="Room1" type="Node2D"]
+script = ExtResource("1_getff")
+
+[node name="LeftExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftExit"]
+position = Vector2(127, 500)
+shape = SubResource("RectangleShape2D_w4ikn")
+debug_color = Color(0.943506, 6.93083e-06, 0.601322, 0.42)
+
+[node name="RightExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightExit"]
+position = Vector2(1034, 498)
+shape = SubResource("RectangleShape2D_6irbp")
+debug_color = Color(5.29438e-07, 0.634852, 0.424177, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(592, 623)
+shape = SubResource("RectangleShape2D_2d63l")
+
+[node name="LeftEntry" type="Marker2D" parent="."]
+position = Vector2(276, 498)
+
+[node name="RightEntry" type="Marker2D" parent="."]
+position = Vector2(886, 499)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 546.0
+offset_top = 227.0
+offset_right = 586.0
+offset_bottom = 250.0
+text = "room-1"
+
+[connection signal="body_entered" from="LeftExit" to="." method="_on_left_exit_body_entered"]
+[connection signal="body_entered" from="RightExit" to="." method="_on_right_exit_body_entered"]
